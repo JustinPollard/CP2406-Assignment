@@ -15,16 +15,16 @@ public class receiver {
             DatagramPacket receivePacket = new DatagramPacket(messageBuffer, messageBuffer.length);
 
             socket.receive(receivePacket);
+            String resultStr = new String(messageBuffer).trim();
+            System.out.println("received: " + resultStr);
 
-            String resultStr = new String(messageBuffer);
+            String userName = "addUser";
+            DatagramPacket user = new DatagramPacket(userName.getBytes(), userName.length());
+            socket.send(user);
 
-            if (resultStr.equals("add"))
-                break;
-
-            System.out.println("recieved: " + resultStr);
         }
 
-        socket.leaveGroup(address);
-        socket.close();
+    //    socket.leaveGroup(address);
+    //    socket.close();
     }
 }
