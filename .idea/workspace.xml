@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37c41923-0e11-4782-b76c-93ccd23e1084" name="Default" comment="Adding compatibility with multiple systems between the sending and receiving Java files.">
+    <list default="true" id="37c41923-0e11-4782-b76c-93ccd23e1084" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Assignment 1/receiver.class" afterPath="$PROJECT_DIR$/out/production/Assignment 1/receiver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Assignment 1/sender.class" afterPath="$PROJECT_DIR$/out/production/Assignment 1/sender.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/receiver.java" afterPath="$PROJECT_DIR$/src/receiver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sender.java" afterPath="$PROJECT_DIR$/src/sender.java" />
@@ -21,10 +20,10 @@
       <file leaf-file-name="sender.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+            <state relative-caret-position="420">
+              <caret line="23" column="91" lean-forward="false" selection-start-line="23" selection-start-column="91" selection-end-line="23" selection-end-column="91" />
               <folding>
-                <marker date="1506054655190" expanded="true" signature="1080:1146" ph="{...}" />
+                <marker date="1506087906129" expanded="true" signature="1214:1280" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -33,8 +32,8 @@
       <file leaf-file-name="receiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/receiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+            <state relative-caret-position="571">
+              <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -281,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506053712904</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Adding a checking function that checks for duplicate usernames when inputted.">
+      <created>1506087238211</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1506087238212</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -293,6 +299,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -315,7 +322,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -328,7 +334,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding compatibility with multiple systems between the sending and receiving Java files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding compatibility with multiple systems between the sending and receiving Java files." />
+    <MESSAGE value="Adding a checking function that checks for duplicate usernames when inputted." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding a checking function that checks for duplicate usernames when inputted." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -342,7 +349,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1506054655190" expanded="true" signature="1080:1146" ph="{...}" />
+            <marker date="1506087906129" expanded="true" signature="1214:1280" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -362,7 +369,7 @@
         <state relative-caret-position="231">
           <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
           <folding>
-            <marker date="1506054655190" expanded="true" signature="1080:1146" ph="{...}" />
+            <marker date="1506087906129" expanded="true" signature="1214:1280" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -382,7 +389,7 @@
         <state relative-caret-position="294">
           <caret line="14" column="47" lean-forward="true" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
           <folding>
-            <marker date="1506054655190" expanded="true" signature="1080:1146" ph="{...}" />
+            <marker date="1506087906129" expanded="true" signature="1214:1280" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -402,7 +409,7 @@
         <state relative-caret-position="21">
           <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
           <folding>
-            <marker date="1506054655190" expanded="true" signature="1080:1146" ph="{...}" />
+            <marker date="1506087906129" expanded="true" signature="1214:1280" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -429,7 +436,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1506054655190" expanded="true" signature="1080:1146" ph="{...}" />
+            <marker date="1506087906129" expanded="true" signature="1214:1280" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -451,16 +458,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/receiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/net/InetAddress.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -469,12 +466,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/receiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+        <state relative-caret-position="420">
+          <caret line="23" column="91" lean-forward="false" selection-start-line="23" selection-start-column="91" selection-end-line="23" selection-end-column="91" />
           <folding>
-            <marker date="1506054655190" expanded="true" signature="1080:1146" ph="{...}" />
+            <marker date="1506087906129" expanded="true" signature="1214:1280" ph="{...}" />
           </folding>
         </state>
       </provider>

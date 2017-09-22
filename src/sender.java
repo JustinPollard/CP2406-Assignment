@@ -16,18 +16,17 @@ public class sender {
         name = input.nextLine();
         String message = String.format(name, localIP.getHostAddress());
 
-
+        //send user's input to reciever.java
         socket.joinGroup(address);
         DatagramPacket sendPacket = new DatagramPacket(message.getBytes(), message.length(), address, 49152);
         socket.send(sendPacket);
 
-
+        //output either an accepted username message or a taken/unaccepted username message
         byte[] messageBuffer = new byte[1024];
         DatagramPacket receivePacket = new DatagramPacket(messageBuffer, messageBuffer.length);
         socket.receive(receivePacket);
         String resultStr = new String(messageBuffer).trim();
         System.out.println(resultStr);
-
 
 
         socket.leaveGroup(address);
