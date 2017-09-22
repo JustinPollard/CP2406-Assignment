@@ -26,7 +26,7 @@ public class sender {
         DatagramPacket receivePacket = new DatagramPacket(messageBuffer, messageBuffer.length);
         socket.receive(receivePacket);
         String resultStr = new String(messageBuffer).trim();
-        System.out.println("Hello " + resultStr);
+        System.out.println(resultStr);
 
 
 

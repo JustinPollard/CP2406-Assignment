@@ -9,6 +9,7 @@ public class receiver {
 
         socket.joinGroup(address);
         System.out.println("Connected. Waiting for player...");
+        String userList = "";
 
         while (true) {
             byte[] messageBuffer = new byte[1024];
@@ -18,10 +19,17 @@ public class receiver {
             String resultStr = new String(messageBuffer).trim();
             System.out.println("received: " + resultStr);
 
-            String userName = "addUser";
-            DatagramPacket user = new DatagramPacket(userName.getBytes(), userName.length());
-            socket.send(user);
-
+            if (!resultStr.equals(userList)) {
+                String userName = "Hello" + resultStr;
+                DatagramPacket user = new DatagramPacket(userName.getBytes(), userName.length(), address, 49152);
+                socket.send(user);
+                userList = resultStr;
+            }
+            else {
+                String usedUserName = "Sorry, this name is taken.";
+                DatagramPacket usedName = new DatagramPacket(usedUserName.getBytes(),usedUserName.length(), address, 49152);
+                socket.send(usedName);
+            }
         }
 
     //    socket.leaveGroup(address);
