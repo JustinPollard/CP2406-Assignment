@@ -29,6 +29,8 @@ public class Display extends JPanel {
         if (isActive) {
             if (lightCycle != null) {
                 lightCycle.draw(graphics);
+//                graphics.drawImage()
+                //to insert an image
             }
         }
         else {

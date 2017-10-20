@@ -1,6 +1,7 @@
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.util.ArrayList;
 
 public class Client {
     public static void main(String[] args) throws Exception {
@@ -9,7 +10,7 @@ public class Client {
 
         socket.joinGroup(address);
         System.out.println("Connected. Waiting for player...");
-        String userList = "";
+        ArrayList <String> userList = new ArrayList<>();
 
         while (true) {
             byte[] messageBuffer = new byte[1024];
