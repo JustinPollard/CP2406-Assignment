@@ -24,17 +24,20 @@ public class Client {
             //assign userList variable with username and return a greeting to the user
             if (userList.contains(resultStr)) {
                 //add resultStr to array
-                break;
+                String usedUserName = "Sorry, this name is taken.";
+                DatagramPacket usedName = new DatagramPacket(usedUserName.getBytes(),usedUserName.length(), address, 49152);
+                socket.send(usedName);
 //                String userName = "Hello" + resultStr;
-//                DatagramPacket user = new DatagramPacket(userName.getBytes(), userName.length(), address, 49152);
+//
 //                socket.send(user);
 //                userList = resultStr;
             }
             //if username is taken then send an 'incorrect' statement
             else {
-                String usedUserName = "Sorry, this name is taken.";
-                DatagramPacket usedName = new DatagramPacket(usedUserName.getBytes(),usedUserName.length(), address, 49152);
-                socket.send(usedName);
+
+                DatagramPacket user = new DatagramPacket(resultStr.getBytes(), resultStr.length(), address, 49152);
+                socket.send(user);
+                break;
             }
         }
 //following two code snippets don't work
