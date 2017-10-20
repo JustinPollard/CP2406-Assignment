@@ -3,7 +3,7 @@ import java.net.MulticastSocket;
 import java.net.DatagramPacket;
 import java.util.Scanner;
 
-public class sender {
+public class Server {
     public static void main(String[] args) throws Exception {
 
         InetAddress address = InetAddress.getByName("228.5.6.7");

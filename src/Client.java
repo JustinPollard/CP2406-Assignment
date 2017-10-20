@@ -2,7 +2,7 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 
-public class receiver {
+public class Client {
     public static void main(String[] args) throws Exception {
         InetAddress address = InetAddress.getByName("228.5.6.7");
         MulticastSocket socket = new MulticastSocket(49152);
