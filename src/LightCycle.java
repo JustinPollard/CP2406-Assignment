@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.awt.image.*;
 
 
 class LightCycle {
@@ -12,10 +13,11 @@ class LightCycle {
 
     public boolean isActive;
     private boolean isWallActive = false;
+    private boolean isSpeedy = false;
 
     private ArrayList<Rectangle> trail = new ArrayList<Rectangle>();
 
-
+    int speedCount = 0;
 
     LightCycle(int size, Color color) {
         isActive = true;
@@ -27,6 +29,21 @@ class LightCycle {
         this.color = Color.blue;
     }
 
+    void speedStat() {
+        if (isSpeedy == true && speedCount != 2){
+            speedUp();
+            speedCount += 1;
+        }
+        if (speedCount == 2){
+            slowDown();
+            speedCount -= 1;
+        }
+        if (isSpeedy == true && speedCount == -2)  {
+            speedUp();
+            speedCount += 1;
+        }
+
+    }
 
     void jetWall() {
         if (isWallActive == true) {
@@ -37,7 +54,15 @@ class LightCycle {
             System.out.println("Jetwall is on");
         }
     }
+    void speedUp() {
+        x += xDir;
+        y += yDir;
+    }
 
+    void slowDown() {
+        xDir /= 5;
+        yDir /= 5;
+    }
 
     void moveUp() {
         yDir = -5;
@@ -93,9 +118,10 @@ class LightCycle {
     void draw(Graphics graphics) {
         int topLeftX = x - 2;
         int topLeftY = y - 2;
-//        int insetSize = 5 + random.nextInt(16);
 
-        Graphics localGraphics = graphics.create(); // isolate changes here for: colour, transform, etc.
+
+
+        Graphics localGraphics = graphics.create();
         localGraphics.setColor(color);
         localGraphics.fillRect(topLeftX, topLeftY,
                 30, 30);

@@ -79,6 +79,10 @@ public class GameWindow {
                 if (e.getKeyCode () == 32){
                     lightCycle.jetWall();
                 }
+                //Shift key toggling speed
+                if (e.getKeyCode() == 16){
+                    lightCycle.speedStat();
+                }
 
             }
         });
