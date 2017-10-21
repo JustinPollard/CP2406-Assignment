@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Display extends JPanel {
 
     boolean isActive;
     private LightCycle lightCycle;
+    private static final Random random = new Random();
     private static final Font font = new Font("Calibri",Font.BOLD, 50);
 
     Display() {
@@ -24,15 +26,17 @@ public class Display extends JPanel {
     }
 
 
+
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        int forceField = 5 + random.nextInt(16);
 
         ArrayList<Rectangle> rects = lightCycle.getTrail();
         for (Rectangle rectangle : rects ) {
             graphics.setColor(Color.RED);
-            graphics.drawRect(rectangle.x,rectangle.y, 30,30);
-            graphics.fillRect(rectangle.x,rectangle.y, 30,30);
+            graphics.drawRect(rectangle.x - 2,rectangle.y - 2, 30,30);
+            graphics.fillRect(rectangle.x + forceField/2,rectangle.y + forceField/2, 30 - forceField,30 - forceField);
         }
 
         if (isActive) {

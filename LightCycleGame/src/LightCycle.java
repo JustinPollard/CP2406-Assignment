@@ -15,7 +15,7 @@ class LightCycle {
 
     private ArrayList<Rectangle> trail = new ArrayList<Rectangle>();
 
-    private static final Random random = new Random();
+
 
     LightCycle(int size, Color color) {
         isActive = true;
