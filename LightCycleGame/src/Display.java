@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Display extends JPanel {
 
@@ -26,6 +27,14 @@ public class Display extends JPanel {
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+
+        ArrayList<Rectangle> rects = lightCycle.getTrail();
+        for (Rectangle rectangle : rects ) {
+            graphics.setColor(Color.RED);
+            graphics.drawRect(rectangle.x,rectangle.y, 30,30);
+            graphics.fillRect(rectangle.x,rectangle.y, 30,30);
+        }
+
         if (isActive) {
             if (lightCycle != null) {
                 lightCycle.draw(graphics);

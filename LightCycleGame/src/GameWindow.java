@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 
 // When player hits side, they die
@@ -28,7 +29,12 @@ public class GameWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lightCycle.move(display.getSize());
-                if (lightCycle.isActive == false){
+                if (lightCycle.isWallActive()) {
+                    ArrayList<Rectangle> rect = lightCycle.getTrail();
+                    rect.add(new Rectangle(lightCycle.getX(), lightCycle.getY(), 30,30 ));
+                    lightCycle.setTrail(rect);
+                }
+                if (!lightCycle.isActive){
                     display.gameOver();
                 }
 

@@ -13,7 +13,7 @@ class LightCycle {
     public boolean isActive;
     private boolean isWallActive = false;
 
-    ArrayList
+    private ArrayList<Rectangle> trail = new ArrayList<Rectangle>();
 
     private static final Random random = new Random();
 
@@ -104,4 +104,27 @@ class LightCycle {
 
     }
 
+    //Get methods
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public boolean isWallActive() {
+        return isWallActive;
+    }
+
+    public ArrayList<Rectangle> getTrail() {
+        return trail;
+    }
+
+    //Set methods
+
+    public void setTrail(ArrayList<Rectangle> trail) {
+        this.trail = trail;
+    }
 }
