@@ -41,7 +41,7 @@ public class Server {
             }
         }
 //following two code snippets don't work
-    //    socket.leaveGroup(address);
-    //    socket.close();
+        socket.leaveGroup(address);
+        socket.close();
     }
 }

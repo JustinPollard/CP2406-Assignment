@@ -53,6 +53,27 @@ public class GameWindow {
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     lightCycle.moveRight();
                 }
+                //press 'W' to go up
+                if (e.getKeyCode() == 87) {
+                    lightCycle.moveUp();
+                }
+                //press 'S' to go down
+                if (e.getKeyCode() == 83) {
+                    lightCycle.moveDown();
+                }
+                //press 'A' to go left
+                if (e.getKeyCode() == 65) {
+                    lightCycle.moveLeft();
+                }
+                //press 'D' to go right
+                if (e.getKeyCode() == 68) {
+                    lightCycle.moveRight();
+                }
+                //spacebar toggling jet wall
+                if (e.getKeyCode () == 32){
+                    lightCycle.jetWall();
+                }
+
             }
         });
 

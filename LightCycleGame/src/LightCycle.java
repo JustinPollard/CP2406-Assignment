@@ -1,15 +1,19 @@
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 
 class LightCycle {
-    private int x,y;
+    private int x, y;
     private int xDir, yDir;
 
     private int size;
     private Color color;
 
     public boolean isActive;
+    private boolean isWallActive = false;
+
+    ArrayList
 
     private static final Random random = new Random();
 
@@ -22,19 +26,35 @@ class LightCycle {
         this.size = size;
         this.color = Color.blue;
     }
-    void moveUp(){
+
+
+    void jetWall() {
+        if (isWallActive == true) {
+            isWallActive = false;
+            System.out.println("Jetwall is off");
+        } else {
+            isWallActive = true;
+            System.out.println("Jetwall is on");
+        }
+    }
+
+
+    void moveUp() {
         yDir = -5;
         xDir = 0;
     }
-    void moveDown(){
+
+    void moveDown() {
         yDir = 5;
         xDir = 0;
     }
-    void moveLeft(){
+
+    void moveLeft() {
         yDir = 0;
         xDir = -5;
     }
-    void moveRight(){
+
+    void moveRight() {
         yDir = 0;
         xDir = 5;
     }
@@ -44,25 +64,25 @@ class LightCycle {
         y = y + yDir;
 
 
-        if ((xDir > 0 && x+this.size/2 > size.width)){
+        if ((xDir > 0 && x + this.size / 2 > size.width)) {
             xDir = 0;
             yDir = 0;
             x -= 5;
             isActive = false;
         }
-        if ((xDir < 0 && x-this.size/7 < 0)){
+        if ((xDir < 0 && x - this.size / 7 < 0)) {
             xDir = 0;
             yDir = 0;
             x += 5;
             isActive = false;
         }
-        if ((yDir > 0 && y+this.size/2 > size.height)){
+        if ((yDir > 0 && y + this.size / 2 > size.height)) {
             xDir = 0;
             yDir = 0;
             y -= 5;
             isActive = false;
         }
-        if ((yDir < 0 && y-this.size < 0)){
+        if ((yDir < 0 && y - this.size < 0)) {
             xDir = 0;
             yDir = 0;
             y += 5;
