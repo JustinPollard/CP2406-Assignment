@@ -30,19 +30,23 @@ class LightCycle {
     }
 
     void speedStat() {
-        if (isSpeedy == true && speedCount != 2){
+        if (isSpeedy == false  && speedCount != 2 ){
             speedUp();
+         //   isSpeedy = true;
             speedCount += 1;
         }
-        if (speedCount == 2){
-            slowDown();
+ /*       if (speedCount == 1){
             speedCount -= 1;
+            slowDown();
+            isSpeedy = true;
         }
-        if (isSpeedy == true && speedCount == -2)  {
+            //speedCount -= 1;
+        if ( speedCount == -1 )  {
             speedUp();
             speedCount += 1;
-        }
-
+            isSpeedy = true ;
+       }
+*/
     }
 
     void jetWall() {
@@ -54,9 +58,9 @@ class LightCycle {
             System.out.println("Jetwall is on");
         }
     }
-    void speedUp() {
-        x += xDir;
-        y += yDir;
+    private void speedUp() {
+        xDir *= 2;
+        yDir *= 2;
     }
 
     void slowDown() {

@@ -82,6 +82,7 @@ public class GameWindow {
                 //Shift key toggling speed
                 if (e.getKeyCode() == 16){
                     lightCycle.speedStat();
+                    lightCycle.speedCount += 1;
                 }
 
             }

@@ -26,6 +26,7 @@ public class Display extends JPanel {
         isActive = false;
     }
 
+    int collision = 0;
 
     @Override
     protected void paintComponent(Graphics graphics) {
@@ -46,18 +47,19 @@ public class Display extends JPanel {
                 //to insert an image
             }
         } else {
-//            graphics.setColor(Color.RED);
-            // check and edit font size because it doesn't work on the private static thingy
-//            graphics.drawString("Game Over!", 300, 300);
-
-/*            JOptionPane.showMessageDialog(frame,
-                    "Eggs are not supposed to be green.");
-            graphics.dispose();
-            */
-            JOptionPane.showConfirmDialog(frame,
+            collision += 1;
+        }
+        if (collision == 1) {
+            int replayOptionBox = JOptionPane.showConfirmDialog(frame,
                     "Do you want to play again?");
-                    //if yes then restart the java file. If no then return to menu.
-
+            if (replayOptionBox == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "Finding another player...");
+                GameWindow.main(new String[0]);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Returning to Menu...");
+                System.exit(0);
+            }
         }
     }
 }
