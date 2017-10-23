@@ -9,14 +9,9 @@ public class Display extends JPanel {
     private LightCycle lightCycle;
     private static final Random random = new Random();
     private static final Font font = new Font("Calibri", Font.BOLD, 50);
+    int collision = 0;
     JFrame frame;
 
-    Display() {
-        setFocusable(true);
-        setPreferredSize(new Dimension(600, 800));
-        setBackground(new Color(0, 0, 0));
-        isActive = true;
-    }
 
     void setLightCycle(LightCycle lightCycle) {
         this.lightCycle = lightCycle;
@@ -25,9 +20,14 @@ public class Display extends JPanel {
     public void gameOver() {
         isActive = false;
     }
-
-    int collision = 0;
-
+/*______________________________Application window's properties___________________________________*/
+    Display() {
+        setFocusable(true);
+        setPreferredSize(new Dimension(600, 800));
+        setBackground(new Color(0, 0, 0));
+        isActive = true;
+    }
+/*____________________________Jet Wall properties_____________________________________*/
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -40,11 +40,10 @@ public class Display extends JPanel {
             graphics.fillRect(rectangle.x + forceField / 2, rectangle.y + forceField / 2, 30 - forceField, 30 - forceField);
         }
 
+/*_______________________Checks if the Light Cycle sprite hasn't collided with any objects_________________________________*/
         if (isActive) {
             if (lightCycle != null) {
                 lightCycle.draw(graphics);
-//                graphics.drawImage()
-                //to insert an image
             }
         } else {
             collision += 1;
@@ -55,11 +54,12 @@ public class Display extends JPanel {
             if (replayOptionBox == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(null, "Finding another player...");
                 GameWindow.main(new String[0]);
-                
-            } else {
+            }
+            else {
                 JOptionPane.showMessageDialog(null, "Returning to Menu...");
                 System.exit(0);
             }
         }
     }
 }
+

@@ -12,13 +12,29 @@ class LightCycle {
     private Color color;
 
     public boolean isActive;
-    private boolean isWallActive = false;
+    public boolean isWallActive = false;
     private boolean isSpeedy = false;
-
     private ArrayList<Rectangle> trail = new ArrayList<Rectangle>();
 
-    int speedCount = 0;
+    int speedCount;
+    public int getY() {
+        return y;
+    }
+    public int getX() {
+        return x;
+    }
+    public boolean isWallActive() {
+        return isWallActive;
+    }
+    public ArrayList<Rectangle> getTrail() {
+        return trail;
+    }
+    public void setTrail(ArrayList<Rectangle> trail) {
+        this.trail = trail;
+    }
 
+
+/*_____________________________Light Cycle properties____________________________________*/
     LightCycle(int size, Color color) {
         isActive = true;
         x = 100;
@@ -29,25 +45,33 @@ class LightCycle {
         this.color = Color.blue;
     }
 
-    void speedStat() {
-        if (isSpeedy == false  && speedCount != 2 ){
-            speedUp();
-         //   isSpeedy = true;
-            speedCount += 1;
-        }
- /*       if (speedCount == 1){
-            speedCount -= 1;
-            slowDown();
-            isSpeedy = true;
-        }
-            //speedCount -= 1;
-        if ( speedCount == -1 )  {
-            speedUp();
-            speedCount += 1;
-            isSpeedy = true ;
-       }
-*/
+
+    void speedReset(){
+      //  speedCount = 0;
     }
+
+    /*_________________________Toggles speed________________________________________*/
+    void speedStat() {
+        if (!isSpeedy && (speedCount == 0 || speedCount == -1)){
+            speedUp();
+            speedUp();
+            isSpeedy = true;
+            speedCount += 1;
+        }
+        if (speedCount == 1){
+            slowDown();
+            isSpeedy = false;
+            speedCount -= 1;
+        }
+        if (!isSpeedy && speedCount == -1 ){
+            speedUp();
+            speedUp();
+            speedCount = 0;
+            isSpeedy = true;
+       }
+    }
+
+/*_______________________________Toggling Jet Wall__________________________________*/
 
     void jetWall() {
         if (isWallActive == true) {
@@ -58,16 +82,18 @@ class LightCycle {
             System.out.println("Jetwall is on");
         }
     }
+
+/*__________________________Movement Speed_______________________________________*/
     private void speedUp() {
         xDir *= 2;
         yDir *= 2;
     }
-
     void slowDown() {
-        xDir /= 5;
-        yDir /= 5;
+        xDir /= 2;
+        yDir /= 2;
     }
 
+/*_____________________Light Cycle's directions when movement keys pressed___________________________*/
     void moveUp() {
         yDir = -5;
         xDir = 0;
@@ -88,6 +114,7 @@ class LightCycle {
         xDir = 5;
     }
 
+/*____________________________Border collisions_____________________________________*/
     void move(Dimension size) {
         x = x + xDir;
         y = y + yDir;
@@ -119,6 +146,7 @@ class LightCycle {
         }
     }
 
+/*_____________________________Creates Light Cycle sprite____________________________________*/
     void draw(Graphics graphics) {
         int topLeftX = x - 2;
         int topLeftY = y - 2;
@@ -132,29 +160,5 @@ class LightCycle {
         localGraphics.drawRect(topLeftX, topLeftY, 30, 30);
         localGraphics.dispose();
 
-    }
-
-    //Get methods
-
-    public int getY() {
-        return y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public boolean isWallActive() {
-        return isWallActive;
-    }
-
-    public ArrayList<Rectangle> getTrail() {
-        return trail;
-    }
-
-    //Set methods
-
-    public void setTrail(ArrayList<Rectangle> trail) {
-        this.trail = trail;
     }
 }
