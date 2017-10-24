@@ -35,6 +35,7 @@ public class GameWindow {
                     rect.add(new Rectangle(lightCycle.getX(), lightCycle.getY(), 30,30 ));
                     lightCycle.setTrail(rect);
                 }
+                lightCycle.move(display.getSize());
                 if (!lightCycle.isActive){
                     display.gameOver();
                 }
@@ -49,52 +50,57 @@ public class GameWindow {
             public void keyReleased(KeyEvent e) {
                 System.out.println(e.getKeyCode());
                 //press 'UP' to go up
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    lightCycle.moveUp();
-                    lightCycle.speedReset();
-                }
-                //press 'DOWN' to go down
-                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    lightCycle.moveDown();
-                    lightCycle.speedReset();
-                }
-                //press 'LEFT' to go left
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    lightCycle.moveLeft();
-                    lightCycle.speedReset();
-                }
-                //press 'RIGHT' to go right
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    lightCycle.moveRight();
-                    lightCycle.speedReset();
-                }
+//                if (e.getKeyCode() == KeyEvent.VK_UP) {
+//                    lightCycle.moveUp();
+//                    lightCycle.speedReset();
+//                }
+//                //press 'DOWN' to go down
+//                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+//                    lightCycle.moveDown();
+//                    lightCycle.speedReset();
+//                }
+//                //press 'LEFT' to go left
+//                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+//                    lightCycle.moveLeft();
+//                    lightCycle.speedReset();
+//                }
+//                //press 'RIGHT' to go right
+//                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+//                    lightCycle.moveRight();
+//                    lightCycle.speedReset();
+//                }
                 //press 'W' to go up
                 if (e.getKeyCode() == 87) {
-                    lightCycle.moveUp();
-                    lightCycle.speedReset();
+                    lightCycle.yDir = -1;
+                    lightCycle.xDir = 0;
+
                 }
                 //press 'S' to go down
                 if (e.getKeyCode() == 83) {
-                    lightCycle.moveDown();
-                    lightCycle.speedReset();
+                    lightCycle.yDir = 1;
+                    lightCycle.xDir = 0;
                 }
                 //press 'A' to go left
                 if (e.getKeyCode() == 65) {
-                    lightCycle.moveLeft();
-                    lightCycle.speedReset();
+                    lightCycle.yDir = 0;
+                    lightCycle.xDir = -1;
                 }
                 //press 'D' to go right
                 if (e.getKeyCode() == 68) {
-                    lightCycle.moveRight();
-                    lightCycle.speedReset();
+                    lightCycle.yDir = 0;
+                    lightCycle.xDir = 1;
                 }
                 //spacebar toggling jet wall
                 if (e.getKeyCode () == 32){
                     lightCycle.jetWall();
                 }
-                //Shift key toggling speed
+                //Shift key increases speed
                 if (e.getKeyCode() == 16){
-                    lightCycle.speedStat();
+                    lightCycle.speed = lightCycle.speed + 1;
+                }
+                //'Z' key decreases speed
+                if (e.getKeyCode() == 90){
+                    lightCycle.speed = lightCycle.speed - 1;
                 }
             }
         });

@@ -6,9 +6,10 @@ import java.awt.image.*;
 
 class LightCycle {
     private int x, y;
-    private int xDir, yDir;
+    int xDir, yDir;
 
     private int size;
+    int speed;
     private Color color;
 
     public boolean isActive;
@@ -41,6 +42,7 @@ class LightCycle {
         y = 300;
         xDir = 0;
         yDir = 0;
+        speed = 0;
         this.size = size;
         this.color = Color.blue;
     }
@@ -50,7 +52,7 @@ class LightCycle {
       //  speedCount = 0;
     }
 
-    /*_________________________Toggles speed________________________________________*/
+    /*_________________________Toggles speed________________________________________
     void speedStat() {
         if (!isSpeedy && (speedCount == 0 || speedCount == -1)){
             speedUp();
@@ -69,7 +71,18 @@ class LightCycle {
             speedCount = 0;
             isSpeedy = true;
        }
+    }*/
+
+    /*__________________________Movement Speed_______________________________________*/
+    /*void speedUp() {
+        xDir *= 2;
+        yDir *= 2;
     }
+    void slowDown() {
+        xDir /= 2;
+        yDir /= 2;
+    }*/
+
 
 /*_______________________________Toggling Jet Wall__________________________________*/
 
@@ -83,41 +96,31 @@ class LightCycle {
         }
     }
 
-/*__________________________Movement Speed_______________________________________*/
-    private void speedUp() {
-        xDir *= 2;
-        yDir *= 2;
-    }
-    void slowDown() {
-        xDir /= 2;
-        yDir /= 2;
-    }
-
-/*_____________________Light Cycle's directions when movement keys pressed___________________________*/
-    void moveUp() {
-        yDir = -5;
-        xDir = 0;
-    }
-
-    void moveDown() {
-        yDir = 5;
-        xDir = 0;
-    }
-
-    void moveLeft() {
-        yDir = 0;
-        xDir = -5;
-    }
-
-    void moveRight() {
-        yDir = 0;
-        xDir = 5;
-    }
+///*_____________________Light Cycle's directions when movement keys pressed___________________________*/
+//    void moveUp() {
+//        yDir = -5;
+//        xDir = 0;
+//    }
+//
+//    void moveDown() {
+//        yDir = 5;
+//        xDir = 0;
+//    }
+//
+//    void moveLeft() {
+//        yDir = 0;
+//        xDir = -5;
+//    }
+//
+//    void moveRight() {
+//        yDir = 0;
+//        xDir = 5;
+//    }
 
 /*____________________________Border collisions_____________________________________*/
     void move(Dimension size) {
-        x = x + xDir;
-        y = y + yDir;
+        x = x + xDir * speed;
+        y = y + yDir * speed;
 
 
         if ((xDir > 0 && x + this.size / 2 > size.width)) {
