@@ -18,6 +18,9 @@ public class Client {
         Thread thread = new Thread(input);
         thread.start();
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your username: ");
+        String name = sc.nextLine();
+        out.writeUTF(name);
         while(true)
         {
             String sendMessage = sc.nextLine();

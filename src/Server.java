@@ -35,6 +35,7 @@ public class Server {
         DataOutputStream out;
         DataInputStream in;
         Users[] user = new Users[20];
+        String name;
 
         public Users(DataOutputStream out, DataInputStream in, Users[] user) {
             this.out = out;
@@ -44,12 +45,17 @@ public class Server {
 
         @Override
         public void run() {
+            try {
+                name = in.readUTF();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             while (true) {
                 try {
                     String message = in.readUTF();
                     for (int i = 3; i < 20; i++) {
                         if (user[i] != null) {
-                            user[i].out.writeUTF(message);
+                            user[i].out.writeUTF(name +" : " + message);
                         }
                     }
                 }
