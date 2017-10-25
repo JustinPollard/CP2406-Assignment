@@ -15,7 +15,7 @@ public class Client {
         in = new DataInputStream(socket.getInputStream());
         out = new DataOutputStream(socket.getOutputStream());
         Input input = new Input(in);
-        Thread thread = new Thread();
+        Thread thread = new Thread(input);
         thread.start();
         Scanner sc = new Scanner(System.in);
         while(true)
@@ -40,6 +40,7 @@ class Input implements Runnable {
             }
             catch(IOException e){
                 e.printStackTrace();
-            }        }
+            }
+        }
     }
 }
