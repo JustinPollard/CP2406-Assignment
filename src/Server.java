@@ -68,3 +68,6 @@ public class Server {
 }
 
 // "Java UDP help: https://www.youtube.com/watch?v=1a3TtPr_yvI
+// Java part 3: https://www.youtube.com/watch?v=XKBYcE59y9w
+//alternative links: https://www.youtube.com/watch?v=aIaFFPatJjY
+//https://www.youtube.com/watch?v=zj6waSlheXk
