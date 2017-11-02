@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
-
+/*
 public class Display extends JPanel {
 
     boolean isActive;
@@ -21,7 +21,7 @@ public class Display extends JPanel {
         isActive = false;
     }
 
-    /*______________________________Application window's properties___________________________________*/
+    /*______________________________Application window's properties___________________________________
     Display() {
         setFocusable(true);
         setPreferredSize(new Dimension(600, 800));
@@ -29,7 +29,7 @@ public class Display extends JPanel {
         isActive = true;
     }
 
-    /*____________________________Jet Wall properties_____________________________________*/
+    /*____________________________Jet Wall properties_____________________________________
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -41,7 +41,7 @@ public class Display extends JPanel {
             graphics.fillRect(rectangle.x - 2, rectangle.y - 2, 30, 30);
         }
 
-/*_______________________Checks if the Light Cycle sprite hasn't collided with any objects_________________________________*/
+/*_______________________Checks if the Light Cycle sprite hasn't collided with any objects_________________
         if (isActive) {
             if (lightCycle != null) {
                 lightCycle.draw(graphics);
@@ -72,3 +72,4 @@ public class Display extends JPanel {
     }
 }
 
+*/

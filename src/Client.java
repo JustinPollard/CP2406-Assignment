@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Client extends Applet implements Runnable{
+public class Client extends Applet implements Runnable, KeyListener{
 
     JFrame frame;
     static Socket socket;
@@ -17,9 +17,16 @@ public class Client extends Applet implements Runnable{
     int[] x = new int[10];
     int[] y = new int[10];
 
+    boolean left, right, up, down;
+
+    int playerX;
+    int playerY;
+
+    LightCycle lightCycle = new LightCycle(100, Color.blue);
 
     public void init(){
         setSize(600,800);
+        addKeyListener(this);
         try {
             System.out.println("Connecting");
             socket = new Socket("localhost", 7777);
@@ -54,7 +61,38 @@ public void paint(Graphics graphics){
 
 
     public void run(){
-        while(true){
+        while(true) {
+            if (right) {
+                lightCycle.yDir = -1;
+                lightCycle.xDir = 0;
+                //playerX += 10;
+            }
+            if (left == true) {
+                lightCycle.yDir = -1;
+                lightCycle.xDir = 0;
+                //playerX -= 10;
+            }
+            if (down == true){
+                lightCycle.yDir = -1;
+                lightCycle.xDir = 0;
+                //playerY -=10;
+            }
+            if (up == true){
+                lightCycle.yDir = -1;
+                lightCycle.xDir = 0;
+                //playerY +=10;
+            }
+            if(right||left||up||down){
+                try {
+                    out.writeInt(playerId);
+                    out.writeInt(lightCycle.xDir);
+                    out.writeInt(lightCycle.yDir);
+                }
+                //on my one, hav it so the writeInt() happens on every if statement instead of the block
+                catch(Exception e){
+                    System.out.println("Failed to update coordinates");
+                }
+            }
 
             try{
                 Thread.sleep(400);
@@ -62,6 +100,46 @@ public void paint(Graphics graphics){
             catch (InterruptedException e){
                 e.printStackTrace();
             }
+        }
+    }
+
+
+
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == 87) {
+            up = true;
+        }
+        //press 'S' to go down
+        if (e.getKeyCode() == 83) {
+            down = true;
+        }
+        //press 'A' to go left
+        if (e.getKeyCode() == 65) {
+            left = true;
+        }
+        //press 'D' to go right
+        if (e.getKeyCode() == 68) {
+            right = true;
+        }
+    }
+    public void keyTyped(KeyEvent e) {
+    }
+
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == 87) {
+            up = false;
+        }
+        //press 'S' to go down
+        if (e.getKeyCode() == 83) {
+            down = false;
+        }
+        //press 'A' to go left
+        if (e.getKeyCode() == 65) {
+            left = false;
+        }
+        //press 'D' to go right
+        if (e.getKeyCode() == 68) {
+            right = false;
         }
     }
 }

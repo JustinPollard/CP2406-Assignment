@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
+/*
 public class GameWindow {
     public void actionPerformed(ActionEvent e) {
     }
@@ -71,7 +71,7 @@ public class GameWindow {
             }
         });
 
-/*____________________________Application window's sizing permissions/properties____________________________________*/
+/*____________________________Application window's sizing permissions/properties___________________
         frame.add(display, BorderLayout.CENTER);
 
         display.setLightCycle(lightCycle);
@@ -83,3 +83,4 @@ public class GameWindow {
         //    frame.setResizable(false);
     }
 }
+*/
