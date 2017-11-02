@@ -37,7 +37,6 @@ public class Server {
         String name;
         int playerId;
         int playerIdIn;
-        int PlayerIdOut;
         int xIn;
         int yIn;
 

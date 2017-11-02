@@ -20,14 +20,16 @@ public class Display extends JPanel {
     public void gameOver() {
         isActive = false;
     }
-/*______________________________Application window's properties___________________________________*/
+
+    /*______________________________Application window's properties___________________________________*/
     Display() {
         setFocusable(true);
         setPreferredSize(new Dimension(600, 800));
         setBackground(new Color(0, 0, 0));
         isActive = true;
     }
-/*____________________________Jet Wall properties_____________________________________*/
+
+    /*____________________________Jet Wall properties_____________________________________*/
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -48,31 +50,23 @@ public class Display extends JPanel {
             collision += 1;
         }
         if (collision == 1) {
-            /*int replayOptionBox = JOptionPane.showConfirmDialog(frame,
+            int replayOptionBox = JOptionPane.showConfirmDialog(frame,
                     "Do you want to play again?");
             if (replayOptionBox == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(null, "Finding another player...");
-                GameWindow.main(new String[0]);
+                Client.main(new String[0]);
                 setVisible(false);
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Returning to Menu...");
                 try {
-                    Client.main(new String[0]);
+                    GameMenu.main(new String[0]);
                     setVisible(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Error: can not return to menu");
                     System.exit(0);
                 }
-                System.exit(0);*/
-            try {
-                Client.main(new String[0]);
-                setVisible(false);
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error: can not return to menu");
-                System.exit(0);
+
             }
         }
     }

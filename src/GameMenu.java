@@ -15,7 +15,7 @@ public class GameMenu extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameWindow.main(null);
+                Client.main(null);
                 setVisible(false);
             }
         });
