@@ -15,11 +15,10 @@ public class Server {
         while (true) {
             socket = serverSocket.accept();
             for (int i = 3; i < 20; i++) {
-                out = new DataOutputStream(socket.getOutputStream());
-                in = new DataInputStream(socket.getInputStream());
-                if (user[i] == null)
-                {
-                    user[i] = new Users(out, in, user);
+                if (user[i] == null){
+                    out = new DataOutputStream(socket.getOutputStream());
+                    in = new DataInputStream(socket.getInputStream());
+                    user[i] = new Users(out, in, user, i);
                     Thread thread = new Thread(user[i]);
                     thread.start();
                     break;
@@ -36,31 +35,44 @@ public class Server {
         DataInputStream in;
         Users[] user = new Users[20];
         String name;
+        int playerId;
+        int playerIdIn;
+        int PlayerIdOut;
+        int xIn;
+        int yIn;
 
-        public Users(DataOutputStream out, DataInputStream in, Users[] user) {
+        public Users(DataOutputStream out, DataInputStream in, Users[] user, int pid) {
             this.out = out;
             this.in = in;
             this.user = user;
+            this.playerId = pid;
         }
 
         @Override
         public void run() {
             try {
-                name = in.readUTF();
+                //name = in.readUTF();
+                out.writeInt(playerId);
             } catch (IOException e) {
+                System.out.println("Failed to send Player ID.");
                 e.printStackTrace();
             }
             while (true) {
                 try {
-                    String message = in.readUTF();
+                    playerIdIn = in.readInt();
+                    xIn = in.readInt();
+                    yIn = in.readInt();
                     for (int i = 3; i < 20; i++) {
                         if (user[i] != null) {
-                            user[i].out.writeUTF(name +" : " + message);
+                            user[i].out.writeInt(playerIdIn);
+                            user[i].out.writeInt(xIn);
+                            user[i].out.writeInt(yIn);
                         }
                     }
                 }
                 catch (IOException e){
                     e.printStackTrace();
+                    user[playerId] = null;
                 }
             }
         }

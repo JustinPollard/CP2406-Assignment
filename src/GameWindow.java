@@ -49,26 +49,6 @@ public class GameWindow {
             @Override
             public void keyReleased(KeyEvent e) {
                 System.out.println(e.getKeyCode());
-                //press 'UP' to go up
-//                if (e.getKeyCode() == KeyEvent.VK_UP) {
-//                    lightCycle.moveUp();
-//                    lightCycle.speedReset();
-//                }
-//                //press 'DOWN' to go down
-//                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-//                    lightCycle.moveDown();
-//                    lightCycle.speedReset();
-//                }
-//                //press 'LEFT' to go left
-//                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-//                    lightCycle.moveLeft();
-//                    lightCycle.speedReset();
-//                }
-//                //press 'RIGHT' to go right
-//                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-//                    lightCycle.moveRight();
-//                    lightCycle.speedReset();
-//                }
                 //press 'W' to go up
                 if (e.getKeyCode() == 87) {
                     lightCycle.yDir = -1;

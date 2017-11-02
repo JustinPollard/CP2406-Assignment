@@ -1,8 +1,10 @@
+import java.applet.Applet;
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;
 
-public class Client {
+public class Client extends Applet {
+
 
     static Socket socket;
     static DataInputStream in;
