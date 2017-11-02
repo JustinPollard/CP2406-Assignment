@@ -55,32 +55,21 @@ public class Client extends Applet implements Runnable {
 
 
     }
-/*
+
     public void paint(Graphics graphics) {
         for (int i = 0; i < 10; i++) {
-            graphics.setColor(Color.RED);
-            graphics.drawRect(x[i] - 2, y[i] - 2, 30, 30);
-            graphics.fillRect(x[i] - 2, y[i] - 2, 30, 30);
+            Graphics localGraphics = graphics.create();
+        localGraphics.setColor(Color.RED);
+        localGraphics.fillRect(x[i], y[i],30, 30);
+        localGraphics.drawRect(x[i], y[i], 30, 30);
+        localGraphics.dispose();
         }
     }
-*/
+
 
     public void run() {
-        LightCycle lightCycle = new LightCycle(100, Color.blue);
-        lightCycle.move(display.getSize());
-        if (lightCycle.isWallActive()) {
-            ArrayList<Rectangle> rect = lightCycle.getTrail();
-            rect.add(new Rectangle(lightCycle.getX(), lightCycle.getY(), 30,30 ));
-            lightCycle.setTrail(rect);
-        }
-        lightCycle.move(display.getSize());
-        if (!lightCycle.isActive){
-            display.gameOver();
-        }
-        display.repaint();
-
         setBackground(new Color(0, 0, 0));
-        display.setLightCycle(lightCycle);
+        LightCycle lightCycle = new LightCycle(100, Color.blue);
         while (true) {
             addKeyListener(new KeyAdapter() {
                 @Override
