@@ -10,7 +10,7 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Starting Server...");
-        serverSocket = new ServerSocket(7777);
+        serverSocket = new ServerSocket(4824);
         System.out.println("Server started.");
         while (true) {
             socket = serverSocket.accept();

@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/*
+
 public class GameMenu extends JFrame {
 
     private GameMenu(){
@@ -15,7 +15,7 @@ public class GameMenu extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Client.main(null);
+                //Client.paint(new String [0]);
                 setVisible(false);
             }
         });
@@ -44,4 +44,3 @@ public class GameMenu extends JFrame {
 
     }
 }
-*/
