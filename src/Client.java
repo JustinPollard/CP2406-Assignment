@@ -4,42 +4,26 @@ import java.awt.*;
 import java.awt.event.*;
 import java.net.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Client extends Applet implements Runnable, KeyListener {
 
-    JFrame frame;
-    static Socket socket;
     private static DataOutputStream out;
     private static int playerId;
     private int[] x = new int[10];
     private int[] y = new int[10];
-    private boolean isWallActive;
-    private ArrayList<Rectangle> trail = new ArrayList<Rectangle>();
-
-
-    private boolean isWallActive() {
-        return isWallActive;
-    }
-    private ArrayList<Rectangle> getTrail() {
-        return trail;
-    }
-    private void setTrail(ArrayList<Rectangle> trail) {
-        this.trail = trail;
-    }
-
 
     @Override
     public void init() {
         setSize(600, 800);
+        setVisible(true);
         addKeyListener(this);
         try {
             System.out.println("Connecting");
-            InetAddress address = InetAddress.getByName("10.0.0.106");
+            InetAddress address = InetAddress.getByName("localhost");
             Socket socket = new Socket(address, 4824);
             System.out.println("Connection successful.");
-            JOptionPane.showMessageDialog(null, "Connection to Server Successful");
+            JOptionPane.showMessageDialog(null, "Connection to Server Successful\n" +
+                    "Use the WASD keys to move\nDon't hit the borders or the Jetwalls");
             DataInputStream in = new DataInputStream(socket.getInputStream());
             playerId = in.readInt();
             out = new DataOutputStream(socket.getOutputStream());
@@ -64,11 +48,6 @@ public class Client extends Applet implements Runnable, KeyListener {
             graphics.setColor(Color.RED);
             graphics.fillRect(x[i], y[i], 30, 30);
             graphics.drawRect(x[i], y[i], 30, 30);
-            if (isWallActive()) {
-                ArrayList<Rectangle> rect = getTrail();
-                rect.add(new Rectangle(getX(), getY(), 30,30 ));
-                setTrail(rect);
-            }
         }
     }
     private boolean left, right, up, down;
@@ -94,7 +73,7 @@ public class Client extends Applet implements Runnable, KeyListener {
             if (down) {
                 playery += 10;
             }
-            if (right || left || up || down || isWallActive) {
+            if (right || left || up || down) {
                 try {
                     out.writeInt(playerId);
                     out.writeInt(playerx);
@@ -111,16 +90,6 @@ public class Client extends Applet implements Runnable, KeyListener {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    void jetWall() {
-        if (isWallActive) {
-            isWallActive = false;
-            System.out.println("Jetwall is off");
-        } else {
-            isWallActive = true;
-            System.out.println("Jetwall is on");
         }
     }
 
@@ -145,9 +114,6 @@ public void keyPressed (KeyEvent e) {
         //press 'D' to go right
     if (e.getKeyCode() == 68) {
         right = true;
-    }
-    if (e.getKeyCode() == 32) {
-        isWallActive = true;
     }
 }
 @Override
@@ -184,7 +150,6 @@ public void keyReleased (KeyEvent e){
         @Override
         public void run() {
             while (true) {
-                String message;
                 try {
                     int playerId = in.readInt();
                     int x = in.readInt();

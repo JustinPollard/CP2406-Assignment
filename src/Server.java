@@ -13,18 +13,21 @@ public class Server {
             Socket socket = serverSocket.accept();
             for (int i = 3; i < 20; i++) {
                 if (user[i] == null) {
-                    DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                    DataInputStream in = new DataInputStream(socket.getInputStream());
-                    user[i] = new Users(out, in, user, i);
-                    Thread thread = new Thread(user[i]);
-                    thread.start();
-                    break;
+
+                        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                        DataInputStream in = new DataInputStream(socket.getInputStream());
+                        user[i] = new Users(out, in, user, i);
+                        Thread thread = new Thread(user[i]);
+                        thread.start();
+                        break;
+                    }
                 }
                 //out.writeUTF("This is a test of Java sockets.");
                 //System.out.println("Data has been sent.");
             }
+
         }
-    }
+
 
     static class Users implements Runnable {
 
