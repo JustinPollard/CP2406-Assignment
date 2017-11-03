@@ -22,8 +22,6 @@ public class Server {
                         break;
                     }
                 }
-                //out.writeUTF("This is a test of Java sockets.");
-                //System.out.println("Data has been sent.");
             }
 
         }
@@ -50,7 +48,6 @@ public class Server {
         @Override
         public void run() {
             try {
-                //name = in.readUTF();
                 out.writeInt(playerId);
             } catch (IOException e) {
                 System.out.println("Failed to send Player ID.");
@@ -77,8 +74,3 @@ public class Server {
         }
     }
 }
-
-// "Java UDP help: https://www.youtube.com/watch?v=1a3TtPr_yvI
-// Java part 3: https://www.youtube.com/watch?v=XKBYcE59y9w
-//alternative links: https://www.youtube.com/watch?v=aIaFFPatJjY
-//https://www.youtube.com/watch?v=zj6waSlheXk

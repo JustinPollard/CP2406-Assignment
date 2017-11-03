@@ -42,6 +42,7 @@ public class Client extends Applet implements Runnable, KeyListener {
         this.y[pid] = y2;
     }
 
+    //Sprite
     @Override
     public void paint(Graphics graphics) {
         for (int i = 0; i < 10; i++) {
@@ -54,7 +55,7 @@ public class Client extends Applet implements Runnable, KeyListener {
     private int playerx;
     private int playery;
 
-
+    //movement and coordinate sending
     @Override
     public void run() {
         setBackground(new Color(0, 0, 0));
@@ -93,6 +94,7 @@ public class Client extends Applet implements Runnable, KeyListener {
         }
     }
 
+    //Key mapping
 @Override
 public void keyTyped (KeyEvent e){
         }
