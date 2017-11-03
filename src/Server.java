@@ -23,12 +23,9 @@ public class Server {
                     }
                 }
             }
-
         }
 
-
     static class Users implements Runnable {
-
         DataOutputStream out;
         DataInputStream in;
         Users[] user = new Users[20];

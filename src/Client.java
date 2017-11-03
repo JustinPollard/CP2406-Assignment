@@ -83,7 +83,6 @@ public class Client extends Applet implements Runnable, KeyListener {
                 catch (Exception e1) {
                     System.out.println("Failed to update coordinates");
                 }
-
             }
 
             try {
