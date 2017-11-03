@@ -2,22 +2,19 @@ import java.io.*;
 import java.net.*;
 
 public class Server {
-    static ServerSocket serverSocket;
-    static Socket socket;
-    static DataOutputStream out;
-    static Users[] user = new Users[20];
-    static DataInputStream in;
+    private static final Users[] user = new Users[20];
 
     public static void main(String[] args) throws Exception {
         System.out.println("Starting Server...");
-        serverSocket = new ServerSocket(4824);
+        ServerSocket serverSocket = new ServerSocket(4824);
         System.out.println("Server started.");
+        System.out.println(InetAddress.getLocalHost().getHostAddress());
         while (true) {
-            socket = serverSocket.accept();
+            Socket socket = serverSocket.accept();
             for (int i = 3; i < 20; i++) {
-                if (user[i] == null){
-                    out = new DataOutputStream(socket.getOutputStream());
-                    in = new DataInputStream(socket.getInputStream());
+                if (user[i] == null) {
+                    DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                    DataInputStream in = new DataInputStream(socket.getInputStream());
                     user[i] = new Users(out, in, user, i);
                     Thread thread = new Thread(user[i]);
                     thread.start();
@@ -40,7 +37,7 @@ public class Server {
         int xIn;
         int yIn;
 
-        public Users(DataOutputStream out, DataInputStream in, Users[] user, int pid) {
+        Users(DataOutputStream out, DataInputStream in, Users[] user, int pid) {
             this.out = out;
             this.in = in;
             this.user = user;
@@ -68,10 +65,10 @@ public class Server {
                             user[i].out.writeInt(yIn);
                         }
                     }
-                }
-                catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                     user[playerId] = null;
+                    break;
                 }
             }
         }

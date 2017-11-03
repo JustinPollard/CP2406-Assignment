@@ -8,13 +8,13 @@ class LightCycle {
     private int x, y;
     int xDir, yDir;
 
-    private int size;
+    private final int size;
     int speed;
-    private Color color;
+    private final Color color;
 
     public boolean isActive;
-    public boolean isWallActive = false;
-    private boolean isSpeedy = false;
+    public boolean isWallActive;
+    private final boolean isSpeedy;
     private ArrayList<Rectangle> trail = new ArrayList<Rectangle>();
 
     int speedCount;
@@ -46,43 +46,6 @@ class LightCycle {
         this.size = size;
         this.color = Color.blue;
     }
-
-
-    void speedReset(){
-      //  speedCount = 0;
-    }
-
-    /*_________________________Toggles speed________________________________________
-    void speedStat() {
-        if (!isSpeedy && (speedCount == 0 || speedCount == -1)){
-            speedUp();
-            speedUp();
-            isSpeedy = true;
-            speedCount += 1;
-        }
-        if (speedCount == 1){
-            slowDown();
-            isSpeedy = false;
-            speedCount -= 1;
-        }
-        if (!isSpeedy && speedCount == -1 ){
-            speedUp();
-            speedUp();
-            speedCount = 0;
-            isSpeedy = true;
-       }
-    }*/
-
-    /*__________________________Movement Speed_______________________________________*/
-    /*void speedUp() {
-        xDir *= 2;
-        yDir *= 2;
-    }
-    void slowDown() {
-        xDir /= 2;
-        yDir /= 2;
-    }*/
-
 
 /*_______________________________Toggling Jet Wall__________________________________*/
 
@@ -123,25 +86,25 @@ class LightCycle {
         y = y + yDir * speed;
 
 
-        if ((xDir > 0 && x + this.size / 2 > size.width)) {
+        if (xDir > 0 && x + this.size / 2 > size.width) {
             xDir = 0;
             yDir = 0;
             x -= 5;
             isActive = false;
         }
-        if ((xDir < 0 && x - this.size / 7 < 0)) {
+        if (xDir < 0 && x - this.size / 7 < 0) {
             xDir = 0;
             yDir = 0;
             x += 5;
             isActive = false;
         }
-        if ((yDir > 0 && y + this.size / 2 > size.height)) {
+        if (yDir > 0 && y + this.size / 2 > size.height) {
             xDir = 0;
             yDir = 0;
             y -= 5;
             isActive = false;
         }
-        if ((yDir < 0 && y - this.size < 0)) {
+        if (yDir < 0 && y - this.size < 0) {
             xDir = 0;
             yDir = 0;
             y += 5;

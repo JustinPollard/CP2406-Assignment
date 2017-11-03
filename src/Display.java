@@ -9,7 +9,7 @@ public class Display extends JPanel {
     private LightCycle lightCycle;
     private static final Random random = new Random();
     private static final Font font = new Font("Calibri", Font.BOLD, 50);
-    int collision = 0;
+    int collision;
     JFrame frame;
 
 
@@ -36,7 +36,7 @@ public class Display extends JPanel {
 
         ArrayList<Rectangle> rects = lightCycle.getTrail();
         for (Rectangle rectangle : rects) {
-            graphics.setColor(Color.RED);
+            graphics.setColor(Color.ORANGE);
             graphics.drawRect(rectangle.x - 2, rectangle.y - 2, 30, 30);
             graphics.fillRect(rectangle.x - 2, rectangle.y - 2, 30, 30);
         }

@@ -7,33 +7,40 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Client extends Applet implements Runnable {
+public class Client extends Applet implements Runnable, KeyListener {
 
     JFrame frame;
     static Socket socket;
-    static DataInputStream in;
-    static DataOutputStream out;
-    static int playerId;
-    int[] x = new int[10];
-    int[] y = new int[10];
-    Display display = new Display();
-    boolean left, right, up, down;
-
-    int playerX;
-    int playerY;
+    private static DataOutputStream out;
+    private static int playerId;
+    private int[] x = new int[10];
+    private int[] y = new int[10];
+    private boolean isWallActive;
+    private ArrayList<Rectangle> trail = new ArrayList<Rectangle>();
 
 
+    private boolean isWallActive() {
+        return isWallActive;
+    }
+    private ArrayList<Rectangle> getTrail() {
+        return trail;
+    }
+    private void setTrail(ArrayList<Rectangle> trail) {
+        this.trail = trail;
+    }
 
 
+    @Override
     public void init() {
         setSize(600, 800);
+        addKeyListener(this);
         try {
             System.out.println("Connecting");
-            InetAddress addr = InetAddress.getByName("169.254.154.164");
-            Socket socket = new Socket(addr, 4824);
+            InetAddress address = InetAddress.getByName("10.0.0.106");
+            Socket socket = new Socket(address, 4824);
             System.out.println("Connection successful.");
             JOptionPane.showMessageDialog(null, "Connection to Server Successful");
-            in = new DataInputStream(socket.getInputStream());
+            DataInputStream in = new DataInputStream(socket.getInputStream());
             playerId = in.readInt();
             out = new DataOutputStream(socket.getOutputStream());
             Input input = new Input(in, this);
@@ -46,143 +53,135 @@ public class Client extends Applet implements Runnable {
         }
     }
 
-    public void updateCoordinates(int pid, int x2, int y2) {
+    private void updateCoordinates(int pid, int x2, int y2) {
         this.x[pid] = x2;
         this.y[pid] = y2;
     }
 
-    public void actionPerformed(ActionEvent e) {
-
-
-    }
-
+    @Override
     public void paint(Graphics graphics) {
         for (int i = 0; i < 10; i++) {
-            Graphics localGraphics = graphics.create();
-        localGraphics.setColor(Color.RED);
-        localGraphics.fillRect(x[i], y[i],30, 30);
-        localGraphics.drawRect(x[i], y[i], 30, 30);
-        localGraphics.dispose();
+            graphics.setColor(Color.RED);
+            graphics.fillRect(x[i], y[i], 30, 30);
+            graphics.drawRect(x[i], y[i], 30, 30);
+            if (isWallActive()) {
+                ArrayList<Rectangle> rect = getTrail();
+                rect.add(new Rectangle(getX(), getY(), 30,30 ));
+                setTrail(rect);
+            }
         }
     }
+    private boolean left, right, up, down;
+    private int playerx;
+    private int playery;
 
 
+    @Override
     public void run() {
         setBackground(new Color(0, 0, 0));
-        LightCycle lightCycle = new LightCycle(100, Color.blue);
+
         while (true) {
-            addKeyListener(new KeyAdapter() {
-                @Override
-                public void keyPressed(KeyEvent e) {
-                    System.out.println(e.getKeyCode());
-                    //press 'W' to go up
-                    if (e.getKeyCode() == 87) {
-                        lightCycle.yDir = -1;
-                        lightCycle.xDir = 0;
-
-
-                    }
-                    //press 'S' to go down
-                    if (e.getKeyCode() == 83) {
-                        lightCycle.yDir = 1;
-                        lightCycle.xDir = 0;
-
-                    }
-                    //press 'A' to go left
-                    if (e.getKeyCode() == 65) {
-                        lightCycle.yDir = 0;
-                        lightCycle.xDir = -1;
-                    }
-                    //press 'D' to go right
-                    if (e.getKeyCode() == 68) {
-                        lightCycle.yDir = 0;
-                        lightCycle.xDir = 1;
-                    }
-                    //spacebar toggling jet wall
-                    if (e.getKeyCode() == 32) {
-                        lightCycle.jetWall();
-                    }
-                    //Shift key increases speed
-                    if (e.getKeyCode() == 16) {
-                        lightCycle.speed = lightCycle.speed + 1;
-                    }
-                    //'Z' key decreases speed
-                    if (e.getKeyCode() == 90) {
-                        lightCycle.speed = lightCycle.speed - 1;
-                    }
-
-                    if (e.getKeyCode() == 87 || e.getKeyCode() == 83 || e.getKeyCode() == 65 || e.getKeyCode() == 68) {
-                        try {
-                            out.writeInt(playerId);
-                            out.writeInt(lightCycle.xDir);
-                            out.writeInt(lightCycle.yDir);
-                        }
-                        //on my one, hav it so the writeInt() happens on every if statement instead of the block
-                        catch (Exception e1) {
-                            System.out.println("Failed to update coordinates");
-                        }
-                    }
+            repaint();
+            if (right) {
+                playerx += 10;
+            }
+            if (left) {
+                playerx -= 10;
+            }
+            if (up) {
+                playery -= 10;
+            }
+            if (down) {
+                playery += 10;
+            }
+            if (right || left || up || down || isWallActive) {
+                try {
+                    out.writeInt(playerId);
+                    out.writeInt(playerx);
+                    out.writeInt(playery);
                 }
-            });
+                catch (Exception e1) {
+                    System.out.println("Failed to update coordinates");
+                }
+
+            }
 
             try {
-                Thread.sleep(50);
+                Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-
-    /*
-        public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == 87) {
-                up = true;
-            }
-            //press 'S' to go down
-            if (e.getKeyCode() == 83) {
-                down = true;
-            }
-            //press 'A' to go left
-            if (e.getKeyCode() == 65) {
-                left = true;
-            }
-            //press 'D' to go right
-            if (e.getKeyCode() == 68) {
-                right = true;
-            }
-        }
-        public void keyTyped(KeyEvent e) {
-        }
-
-        public void keyReleased(KeyEvent e) {
-            if (e.getKeyCode() == 87) {
-                up = false;
-            }
-            //press 'S' to go down
-            if (e.getKeyCode() == 83) {
-                down = false;
-            }
-            //press 'A' to go left
-            if (e.getKeyCode() == 65) {
-                left = false;
-            }
-            //press 'D' to go right
-            if (e.getKeyCode() == 68) {
-                right = false;
-            }
+    void jetWall() {
+        if (isWallActive) {
+            isWallActive = false;
+            System.out.println("Jetwall is off");
+        } else {
+            isWallActive = true;
+            System.out.println("Jetwall is on");
         }
     }
-    */
+
+@Override
+public void keyTyped (KeyEvent e){
+        }
+@Override
+public void keyPressed (KeyEvent e) {
+    System.out.println(e.getKeyCode());
+        //press 'W' to go up
+    if (e.getKeyCode() == 87) {
+        up = true;
+    }
+        //press 'S' to go down
+    if (e.getKeyCode() == 83) {
+        down = true;
+    }
+        //press 'A' to go left
+    if (e.getKeyCode() == 65) {
+        left = true;
+    }
+        //press 'D' to go right
+    if (e.getKeyCode() == 68) {
+        right = true;
+    }
+    if (e.getKeyCode() == 32) {
+        isWallActive = true;
+    }
+}
+@Override
+public void keyReleased (KeyEvent e){
+    System.out.println(e.getKeyCode());
+    if (e.getKeyCode() == 87) {
+
+        up = false;
+    }
+    //press 'S' to go down
+    if (e.getKeyCode() == 83) {
+        down = false;
+
+    }
+    //press 'A' to go left
+    if (e.getKeyCode() == 65) {
+        left = false;
+    }
+    //press 'D' to go right
+    if (e.getKeyCode() == 68) {
+
+        right = false;
+    }
+}
+
     class Input implements Runnable {
         DataInputStream in;
         Client client;
 
-        public Input(DataInputStream in, Client c) {
+        Input(DataInputStream in, Client c) {
             this.in = in;
             this.client = c;
         }
-
+        @Override
         public void run() {
             while (true) {
                 String message;
